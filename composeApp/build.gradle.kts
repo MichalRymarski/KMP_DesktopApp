@@ -21,6 +21,12 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.lifecycle.viewmodel)
             implementation(libs.navigation.compose)
+            implementation(libs.coil)
+            implementation(libs.coil.network.ktor)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.coroutines.swing)
+            implementation("com.github.skydoves:landscapist-coil3:2.3.4")
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

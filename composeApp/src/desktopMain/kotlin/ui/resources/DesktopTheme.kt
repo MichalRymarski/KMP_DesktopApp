@@ -15,11 +15,13 @@ fun MyTheme(
     MaterialTheme(
         colors = if (isSystemInDarkTheme())
             darkColors(
+                background = Color.LightGray,
                 primary = Color(0xFFBB86FC), // Purple
                 primaryVariant = Color(0xFF3700B3), // Darker purple
                 secondary = Color(0xFF03DAC5) // Teal
     )
     else lightColors(
+            background = Color.DarkGray,
             primary = Color(0xFF6200EE), // Another shade of purple
             primaryVariant = Color(0xFF3700B3), // Same darker purple
             secondary = Color(0xFF018786) // Slightly

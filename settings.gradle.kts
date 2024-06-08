@@ -8,10 +8,12 @@ pluginManagement {
                 includeGroupAndSubgroups("androidx")
                 includeGroupAndSubgroups("com.android")
                 includeGroupAndSubgroups("com.google")
+
             }
         }
         mavenCentral()
         gradlePluginPortal()
+
     }
 }
 
@@ -24,6 +26,8 @@ dependencyResolutionManagement {
                 includeGroupAndSubgroups("com.google")
             }
         }
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
+        maven("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
         mavenCentral()
     }
 }
