@@ -23,7 +23,6 @@ fun RightScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ) {
-
     val url = "https://perla.pl/wp-content/uploads/2023/08/Perla_mocna_05_474x1024px.png"
 
     Row (
@@ -43,10 +42,12 @@ fun RightScreen(
         }
         CoilImage(
             modifier = Modifier.weight(1f),
-            imageModel = { url }, // loading a network image or local resource using an URL.
+            imageModel = { url },
             imageOptions = ImageOptions(
                 contentScale = ContentScale.Fit,
                 alignment = Alignment.Center
-            )
-        )    }
+            ),
+
+        )
+    }
 }
