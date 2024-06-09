@@ -8,12 +8,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.NotNull
 
 @Serializable
-@Entity(tableName = "origins")
 data class Origin(
-    @PrimaryKey
-    @NotNull
-    @ColumnInfo(name = "origin_name")
     val name: String,
-    @ColumnInfo(name = "origin_url")
-    val url: String? = null
+    val url: String
 )

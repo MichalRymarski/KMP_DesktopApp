@@ -5,9 +5,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowState
 import androidx.lifecycle.ViewModel
+import model.dao.DesktopDao
 
 class DesktopViewModel(
-     private val windowState: WindowState,
+    private val windowState: WindowState,
+    dao: DesktopDao,
 ) : ViewModel() {
 
      fun setFullscreen(){

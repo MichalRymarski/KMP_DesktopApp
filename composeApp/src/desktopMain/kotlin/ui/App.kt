@@ -13,6 +13,10 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.key.Key
@@ -26,6 +30,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.navigation.NavHostController
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
+import model.data.Character
 import network.KtorClient
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import ui.resources.MyTheme
@@ -38,11 +43,15 @@ fun App(
     desktopViewModel: DesktopViewModel,
     navController: NavHostController,
 ) {
+    var character by remember { mutableStateOf<Character?>(null) }
     LaunchedEffect(key1 = null) {
-        println(KtorClient.test())
+        character = KtorClient.test()
     }
 
-    val url = "https://perla.pl/wp-content/uploads/2023/08/Perla_chmielowa_05_474x1024px.png"
+    var url = ""
+    character?.let {
+         url = it.image
+    }
     Row(
         modifier = modifier.background(MaterialTheme.colors.background),
         horizontalArrangement = Arrangement.SpaceEvenly,

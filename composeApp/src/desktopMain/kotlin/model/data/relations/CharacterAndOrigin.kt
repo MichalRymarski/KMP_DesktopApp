@@ -5,6 +5,7 @@ import androidx.room.Relation
 import model.data.Character
 import model.data.Origin
 
+/*
 data class CharacterAndOrigin(
     @Embedded
     val character : Character,
@@ -14,3 +15,4 @@ data class CharacterAndOrigin(
     )
     val origin : Origin
 )
+*/

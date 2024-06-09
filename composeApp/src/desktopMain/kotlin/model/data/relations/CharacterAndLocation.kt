@@ -5,6 +5,7 @@ import androidx.room.Relation
 import model.data.Character
 import model.data.Location
 
+/*
 data class CharacterAndLocation(
     @Embedded
     val character : Character,
@@ -14,3 +15,4 @@ data class CharacterAndLocation(
     )
     val location : Location
 )
+*/
