@@ -38,7 +38,8 @@ kotlin {
             implementation("com.github.skydoves:landscapist-coil3:2.3.4")
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
-
+            implementation("org.slf4j:slf4j-api:1.7.36") // SLF4J API
+            implementation("ch.qos.logback:logback-classic:1.2.11")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

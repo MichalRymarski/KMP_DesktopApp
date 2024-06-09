@@ -16,8 +16,9 @@ import model.data.OriginConverter
 import java.io.File
 
 @Database(
-    version =1,
+    version =2,
     entities = [Character::class],
+    exportSchema = true
     )
 @TypeConverters(OriginConverter::class, LocationConverter::class)
 abstract class DesktopDatabase : RoomDatabase() {
@@ -34,7 +35,7 @@ abstract class DesktopDatabase : RoomDatabase() {
         }
 
         fun getDatabase(): DesktopDatabase {
-            return instance ?: getDatabaseBuilder().setDriver(BundledSQLiteDriver()).build()
+            return instance ?: getDatabaseBuilder().setDriver(BundledSQLiteDriver()).fallbackToDestructiveMigration(dropAllTables = true).build()
             }
         }
 

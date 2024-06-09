@@ -1,40 +1,25 @@
 package ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.text.isTypedEvent
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEventType
-import androidx.compose.ui.input.key.isAltPressed
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.input.key.onPreviewKeyEvent
-import androidx.compose.ui.input.key.type
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
-import model.data.Character
-import network.KtorClient
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import ui.resources.MyTheme
-import java.awt.event.KeyEvent
 
 @Composable
 @Preview
@@ -43,50 +28,31 @@ fun App(
     desktopViewModel: DesktopViewModel,
     navController: NavHostController,
 ) {
-    var character by remember { mutableStateOf<Character?>(null) }
-    LaunchedEffect(key1 = null) {
-        character = KtorClient.test()
-    }
 
-    var url = ""
-    character?.let {
-         url = it.image
-    }
-    Row(
+    val characters = desktopViewModel.characters.collectAsState().value
+    characters.forEach({
+        println(it.name)
+    })
+
+    val state = rememberLazyStaggeredGridState()
+
+    LazyVerticalStaggeredGrid(
         modifier = modifier.background(MaterialTheme.colors.background),
+        state = state,
+        columns = StaggeredGridCells.FixedSize(300.dp),
+        userScrollEnabled = true,
         horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
+        verticalItemSpacing = 20.dp
     ) {
-        IconButton(
-            modifier = Modifier.weight(1f),
-            onClick = {
-                navController.navigate("left")
-            }) {
-            Icon(
-                modifier = Modifier.fillMaxSize(),
-                imageVector = Icons.AutoMirrored.Default.KeyboardArrowLeft,
-                contentDescription = null
+        items(characters) { character ->
+            CoilImage(
+                modifier = Modifier.clip(RoundedCornerShape(20.dp)).clickable { /*TODO*/ },
+                imageModel = { character.image }, // loading a network image or local resource using an URL.
+                imageOptions = ImageOptions(
+                    contentScale = ContentScale.FillBounds,
+                )
             )
         }
-        CoilImage(
-            modifier = Modifier.weight(1f),
-            imageModel = { url }, // loading a network image or local resource using an URL.
-            imageOptions = ImageOptions(
-                contentScale = ContentScale.Fit,
-                alignment = Alignment.Center
-            )
-        )
-        IconButton(
-            modifier = Modifier.weight(1f),
-            onClick = {
-                navController.navigate("right")
-            }) {
-            Icon(
-                modifier = Modifier.fillMaxSize(),
-                imageVector = Icons.AutoMirrored.Default.KeyboardArrowRight,
-                contentDescription = null
-            )
-        }
-
     }
+
 }

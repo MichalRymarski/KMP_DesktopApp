@@ -21,12 +21,7 @@ fun DesktopNavigation(
         composable(route = "main"){
             App(modifier,desktopViewModel,navController)
         }
-        composable(route ="left"){
-            LeftScreen(modifier,navController)
-        }
-        composable(route= "right"){
-            RightScreen(modifier,navController)
-        }
+
     }
 
 }

@@ -9,11 +9,12 @@ import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.*
 import model.data.Character
+import network.KtorClient.client
 
 object KtorClient {
     private val client = HttpClient(OkHttp) {
         install(Logging)
-        install(ContentNegotiation){
+        install(ContentNegotiation) {
             json(Json {
                 ignoreUnknownKeys = true
                 prettyPrint = true
@@ -22,6 +23,8 @@ object KtorClient {
         }
     }
 
-    suspend fun test() = client.get("https://rickandmortyapi.com/api/character/118").body<Character>()
+
+    suspend fun getCharacterById(id: Int) =
+        client.get("https://rickandmortyapi.com/api/character/$id").body<Character>()
 
 }
