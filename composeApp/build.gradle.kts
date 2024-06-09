@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -14,6 +16,7 @@ kotlin {
         val desktopMain by getting
         
         commonMain.dependencies {
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -33,6 +36,8 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.serialization)
             implementation("com.github.skydoves:landscapist-coil3:2.3.4")
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
 
         }
         desktopMain.dependencies {
@@ -41,6 +46,13 @@ kotlin {
     }
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies{
+    ksp(libs.androidx.room.compiler)
+}
 
 compose.desktop {
     application {

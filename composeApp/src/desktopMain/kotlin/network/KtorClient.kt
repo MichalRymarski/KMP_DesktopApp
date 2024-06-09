@@ -8,13 +8,14 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.*
-import network.dto.Character
+import model.data.Character
 
 object KtorClient {
     private val client = HttpClient(OkHttp) {
         install(Logging)
         install(ContentNegotiation){
             json(Json {
+                ignoreUnknownKeys = true
                 prettyPrint = true
                 isLenient = true
             })
