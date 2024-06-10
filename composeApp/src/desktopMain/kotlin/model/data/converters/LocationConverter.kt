@@ -1,7 +1,7 @@
 package model.data.converters
 
 import androidx.room.TypeConverter
-import model.data.Location
+import model.data.entity.Location
 
 class LocationConverter {
     @TypeConverter

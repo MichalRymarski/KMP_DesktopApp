@@ -1,11 +1,9 @@
-package model.data
+package model.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.NotNull
 
@@ -13,10 +11,13 @@ import org.jetbrains.annotations.NotNull
 @Entity(
     tableName = "characters",
 
-)
+    )
 data class Character(
     @PrimaryKey
     @NotNull
+    @ColumnInfo(name = "character_url")
+    val url : String,
+    @ColumnInfo(name = "character_id")
     val id: Int,
     @ColumnInfo(name = "character_name")
     val name: String,
@@ -31,7 +32,10 @@ data class Character(
     @Embedded(prefix = "location_") // Add prefix for Location
     val location: Location,
     @ColumnInfo(name = "image_url")
-    val image: String
+    val image: String,
+    @ColumnInfo(name = "episodes")
+    val episode: List<String>
+
 
 )
 

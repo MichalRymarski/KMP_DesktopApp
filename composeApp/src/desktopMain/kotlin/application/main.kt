@@ -1,6 +1,6 @@
 package application
 
-import ui.DesktopViewModel
+import ui.main.DesktopViewModel
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
@@ -8,7 +8,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import androidx.navigation.compose.rememberNavController
 import model.database.DesktopDatabase
-import ui.DesktopNavigation
+import ui.main.DesktopNavigation
 import ui.resources.MyTheme
 
 fun main() = application {

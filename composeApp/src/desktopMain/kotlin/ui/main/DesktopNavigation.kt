@@ -1,4 +1,4 @@
-package ui
+package ui.main
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
