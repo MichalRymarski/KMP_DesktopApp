@@ -5,14 +5,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import com.sun.tools.javac.util.Context
-import kotlinx.coroutines.internal.synchronized
 import model.dao.DesktopDao
 import model.data.Character
-import model.data.Location
-import model.data.LocationConverter
-import model.data.Origin
-import model.data.OriginConverter
+import model.data.converters.LocationConverter
+import model.data.converters.OriginConverter
 import java.io.File
 
 @Database(

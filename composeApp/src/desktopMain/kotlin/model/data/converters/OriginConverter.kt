@@ -1,6 +1,7 @@
-package model.data
+package model.data.converters
 
 import androidx.room.TypeConverter
+import model.data.Origin
 
 
 class OriginConverter{
