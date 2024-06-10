@@ -1,5 +1,5 @@
 # Tech used: <br>
-* RoomDB for data persistance 
+* RoomDB for data persistence 
 * Coil3 with Landscapist for images
 * Ktor for REST client
 * Compose Multiplatform for UI
