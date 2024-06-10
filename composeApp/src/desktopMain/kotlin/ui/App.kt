@@ -3,6 +3,8 @@ package ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
@@ -42,11 +44,16 @@ fun App(
         columns = StaggeredGridCells.FixedSize(300.dp),
         userScrollEnabled = true,
         horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalItemSpacing = 20.dp
+        contentPadding = PaddingValues(15.dp),
+        verticalItemSpacing = 15.dp
     ) {
         items(characters) { character ->
             CoilImage(
-                modifier = Modifier.clip(RoundedCornerShape(20.dp)).clickable { /*TODO*/ },
+                modifier = Modifier.clip(RoundedCornerShape(20.dp)).clickable {
+                    desktopViewModel.setCurrentCharacter(character)
+                    navController.navigate("character")
+
+                },
                 imageModel = { character.image }, // loading a network image or local resource using an URL.
                 imageOptions = ImageOptions(
                     contentScale = ContentScale.FillBounds,

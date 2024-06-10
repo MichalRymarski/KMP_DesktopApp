@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import ui.character_screen.CharacterCard
 
 @Composable
 fun DesktopNavigation(
@@ -20,6 +21,9 @@ fun DesktopNavigation(
     ){
         composable(route = "main"){
             App(modifier,desktopViewModel,navController)
+        }
+        composable(route = "character"){
+            CharacterCard(modifier,desktopViewModel,navController)
         }
 
     }

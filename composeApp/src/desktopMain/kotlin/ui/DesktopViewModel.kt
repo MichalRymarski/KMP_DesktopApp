@@ -24,8 +24,14 @@ class DesktopViewModel(
     private val _characters = MutableStateFlow<List<Character>>(emptyList())
     val characters = _characters.asStateFlow()
 
+    var currentCharacter : Character? = null
+       private set
     init {
         getAllCharacters()
+    }
+
+    fun setCurrentCharacter(character: Character) {
+        currentCharacter = character
     }
 
     fun setFullscreen() {
